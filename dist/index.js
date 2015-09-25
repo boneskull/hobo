@@ -13,3 +13,4 @@ var log = Logger({
 log.debug('Loaded main module.');
 
 module.exports = require('./commands');
+//# sourceMappingURL=index.js.map

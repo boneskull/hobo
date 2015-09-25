@@ -1,22 +1,35 @@
 'use strict';
 
-let stampit = require('stampit');
-let Configstore = stampit.convertConstructor(require('configstore'));
-let path = require('path');
-let git = require('git');
+import stampit from 'stampit';
+import trivialdb from 'trivialdb';
+import {mkdirp} from './fs';
 
 const Store = stampit({
   init() {
-    Object.defineProperty(this, 'dirpath', {
-      get() {
-        return path.dirname(this.path);
-      }
-    });
+    if (!this.id) {
+      return Promise.reject(new Error('id is required'));
+    }
+    if (!this.dirpath) {
+      return Promise.reject(new Error('dirpath is required'));
+    }
+    return mkdirp(this.dirpath)
+      .bind(this)
+      .then(function() {
+        this.db = trivialdb.db(this.id, {
+          dirpath: this.dirpath
+        });
+      })
+      .return(this);
   },
-  refs: {
-    pods: new Set()
-  },
-  methods() {
-
+  methods: {
+    get: function() {
+      return this.db.get.apply(this.db, arguments);
+    },
+    set: function() {
+      return this.db.set.apply(this.db, arguments);
+    }
   }
-})
+});
+
+export default Store;
+

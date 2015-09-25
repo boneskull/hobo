@@ -29,3 +29,4 @@ var Command = stampit({
 });
 
 module.exports = Command;
+//# sourceMappingURL=command.js.map

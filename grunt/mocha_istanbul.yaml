@@ -1,8 +1,9 @@
 options:
   mask: '**/*.spec.js'
+  mochaOptions:
+    - '--compilers=js:babel/register'
   require:
-    - test/fixture
-  scriptPath: node_modules/istanbul-harmony/lib/cli.js
+    - test/fixture.js
   reportFormats:
     - lcov
     - text-summary

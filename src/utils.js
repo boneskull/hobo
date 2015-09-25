@@ -1,7 +1,7 @@
 'use strict';
 
-let _ = require('lodash');
-let format = require('util').format;
+import _ from 'lodash';
+import format from 'util';
 
 _.mixin({
   format: format
@@ -9,4 +9,4 @@ _.mixin({
   chain: false
 });
 
-module.exports = _;
+export default _;

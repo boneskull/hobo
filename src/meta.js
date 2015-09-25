@@ -1,20 +1,12 @@
 'use strict';
 
-let pkg = require('../package.json');
-let _ = require('./utils');
-let chalk = require('chalk');
+import pkg from '../package.json';
+import _ from './utils';
+import chalk from 'chalk';
 
-const name = pkg.name;
-const version = pkg.version;
-const capitalizedName = _.capitalize(name);
-const nameAndVersion = `${capitalizedName}@${version}`;
-
-const meta = {
-  name: name,
-  version: version,
-  capitalizedName: capitalizedName,
-  nameAndVersion: nameAndVersion,
-  coloredNameAndVersion: `${chalk.green(nameAndVersion)}`
-};
-
-module.exports = meta;
+export const pkgName = pkg.name;
+export const pkgNamePlural = `${pkgName}'s`;
+export const pkgVersion = pkg.version;
+export const capitalizedPkgName = _.capitalize(pkgName);
+export const pkgNameAndVersion = `${capitalizedPkgName}@${pkgVersion}`;
+export const coloredPkgNameAndVersion = `${chalk.green(pkgNameAndVersion)}`;

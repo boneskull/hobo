@@ -1,0 +1,11 @@
+babel:
+  options:
+    sourceMap: true
+  files:
+    -
+      src: '**/*.js'
+      dest: dist/
+      expand: true
+      cwd: src
+
+clean: dist/

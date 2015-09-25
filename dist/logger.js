@@ -1,10 +1,14 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var stampit = require('stampit');
 var EventEmittable = stampit.convertConstructor(require('events').EventEmitter);
 var _ = require('./utils');
 var chalk = require('chalk');
 var meta = require('./meta');
+
 var log = undefined;
 
 var Logger = stampit({
@@ -118,11 +122,15 @@ var Logger = stampit({
     });
 
     this._setup();
-    if (log) {
-      return _.extend(this, log);
-    }
-    log = this;
   }
 }).compose(EventEmittable);
 
-module.exports = Logger;
+exports.Logger = Logger;
+
+exports['default'] = function (opts) {
+  if (_.isUndefined(opts)) {
+    return log || Logger();
+  }
+  return Logger(opts);
+};
+//# sourceMappingURL=logger.js.map

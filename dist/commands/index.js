@@ -21,3 +21,4 @@ execute.upgrade = require('./upgrade');
 execute.gitignore = require('./gitignore');
 
 module.exports = execute;
+//# sourceMappingURL=index.js.map

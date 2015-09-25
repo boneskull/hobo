@@ -65,3 +65,4 @@ function updateGitignore(cwd) {
 }
 
 module.exports = updateGitignore;
+//# sourceMappingURL=gitignore.js.map

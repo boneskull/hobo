@@ -47,3 +47,4 @@ function symlink(cwd, log) {
 }
 
 module.exports = symlink;
+//# sourceMappingURL=symlink.js.map

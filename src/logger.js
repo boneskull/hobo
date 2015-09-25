@@ -5,9 +5,10 @@ let EventEmittable = stampit.convertConstructor(require('events').EventEmitter);
 let _ = require('./utils');
 let chalk = require('chalk');
 let meta = require('./meta');
+
 let log;
 
-const Logger = stampit({
+export const Logger = stampit({
   methods: {
     _teardown() {
       _(this.levels)
@@ -117,11 +118,12 @@ const Logger = stampit({
     });
 
     this._setup();
-    if (log) {
-      return _.extend(this, log);
-    }
-    log = this;
   }
 }).compose(EventEmittable);
 
-module.exports = Logger;
+export default (opts) => {
+  if (_.isUndefined(opts)) {
+    return log || Logger();
+  }
+  return Logger(opts);
+};

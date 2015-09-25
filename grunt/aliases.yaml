@@ -2,3 +2,6 @@ test:
   - eslint:test
   - mocha_istanbul:test
 
+dist:
+  - clean:dist
+  - babel:dist

@@ -48,7 +48,7 @@
     "babel": "^5.8.23",
     "babel-core": "^5.8.25",
     "babel-eslint": "^4.1.3",
-    "babel-plugin-rewire": "^0.1.22",
+    "babel-plugin-rewire": "github:speedskater/babel-plugin-rewire",
     "chai": "^3.0.0",
     "chai-as-promised": "^5.1.0",
     "codacy-coverage": "^1.1.3",

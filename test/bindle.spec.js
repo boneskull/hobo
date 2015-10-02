@@ -3,8 +3,9 @@
 'use strict';
 
 import tmp from 'tmp';
-import Bindle from '../src/bindle';
+import Bindle, {__RewireAPI__ as BindleRewireAPI} from '../src/bindle';
 import fs from '../src/fs';
+import Promise from 'bluebird';
 
 describe('Bindle', () => {
   let sandbox;
@@ -12,11 +13,14 @@ describe('Bindle', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create('Bindle');
     fs.__Rewire__('mkdirp', sinon.stub().returns(Promise.resolve()));
+    BindleRewireAPI.__Rewire__('isGit',
+      sinon.stub().returns(Promise.resolve(true)));
   });
 
   afterEach(() => {
     sandbox.restore();
     fs.__ResetDependency__('mkdirp');
+    BindleRewireAPI.__ResetDependency__('isGit');
   });
 
   it('should be a function', () => {
@@ -48,7 +52,6 @@ describe('Bindle', () => {
       return Bindle({
         id: 'foo',
         dirpath: tmprootPath
-      }).then((_bindle) => {
       });
     });
   });

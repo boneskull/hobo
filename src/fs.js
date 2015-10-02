@@ -8,7 +8,6 @@ import userHome from 'user-home';
 import path from 'path';
 import _canWrite from 'can-write';
 
-
 const fs = Promise.promisifyAll(_fs);
 export default fs;
 
@@ -24,11 +23,14 @@ export function isGit(dirpath) {
 
 export function canWrite(filepath) {
   return _canWrite(filepath)
-    .then(function(result) {
+    .then((result) => {
       if (!result) {
         return Promise.reject(new Error(`Cannot write to ${filepath}`));
       }
-      return Promise.resolve(true);
+      return true;
+    })
+    .catch(() => {
+      return false;
     });
 }
 export const home = userHome;

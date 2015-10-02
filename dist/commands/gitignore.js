@@ -1,15 +1,139 @@
 'use strict';
 
+var updateGitignore = _updateGitignoreOrig;
+var __$Getters__ = [];
+var __$Setters__ = [];
+var __$Resetters__ = [];
+
+function _GetDependency__(name) {
+  return __$Getters__[name]();
+}
+
+function _Rewire__(name, value) {
+  __$Setters__[name](value);
+}
+
+function _ResetDependency__(name) {
+  __$Resetters__[name]();
+}
+
+var _RewireAPI__ = {
+  '__GetDependency__': _GetDependency__,
+  '__get__': _GetDependency__,
+  '__Rewire__': _Rewire__,
+  '__set__': _Rewire__,
+  '__ResetDependency__': _ResetDependency__
+};
+'use strict';
+
 var gitignoreParser = require('gitignore-parser');
+var _gitignoreParser = gitignoreParser;
+
+__$Getters__['gitignoreParser'] = function () {
+  return gitignoreParser;
+};
+
+__$Setters__['gitignoreParser'] = function (value) {
+  gitignoreParser = value;
+};
+
+__$Resetters__['gitignoreParser'] = function () {
+  gitignoreParser = _gitignoreParser;
+};
+
 var fs = require('../fs');
+var _fs = fs;
+
+__$Getters__['fs'] = function () {
+  return fs;
+};
+
+__$Setters__['fs'] = function (value) {
+  fs = value;
+};
+
+__$Resetters__['fs'] = function () {
+  fs = _fs;
+};
+
 var pkg = require('../../package.json');
+var _pkg = pkg;
+
+__$Getters__['pkg'] = function () {
+  return pkg;
+};
+
+__$Setters__['pkg'] = function (value) {
+  pkg = value;
+};
+
+__$Resetters__['pkg'] = function () {
+  pkg = _pkg;
+};
+
 var path = require('path');
+var _path = path;
+
+__$Getters__['path'] = function () {
+  return path;
+};
+
+__$Setters__['path'] = function (value) {
+  path = value;
+};
+
+__$Resetters__['path'] = function () {
+  path = _path;
+};
+
 var _ = require('../utils');
 
+var _2 = _;
+
+__$Getters__['_'] = function () {
+  return _;
+};
+
+__$Setters__['_'] = function (value) {
+  _ = value;
+};
+
+__$Resetters__['_'] = function () {
+  _ = _2;
+};
+
 var GITIGNORE = '.gitignore';
+var _GITIGNORE = GITIGNORE;
+
+__$Getters__['GITIGNORE'] = function () {
+  return GITIGNORE;
+};
+
+__$Setters__['GITIGNORE'] = function (value) {
+  GITIGNORE = value;
+};
+
+__$Resetters__['GITIGNORE'] = function () {
+  GITIGNORE = _GITIGNORE;
+};
+
 var log = require('../logger')();
 
-function updateGitignore(cwd) {
+var _log = log;
+
+__$Getters__['log'] = function () {
+  return log;
+};
+
+__$Setters__['log'] = function (value) {
+  log = value;
+};
+
+__$Resetters__['log'] = function () {
+  log = _log;
+};
+
+function _updateGitignoreOrig(cwd) {
   cwd = cwd || fs.cwd;
 
   return fs.isGit(cwd).then(function (result) {
@@ -64,5 +188,52 @@ function updateGitignore(cwd) {
   });
 }
 
+var _updateGitignore = updateGitignore;
+
+__$Getters__['updateGitignore'] = function () {
+  return updateGitignore;
+};
+
+__$Setters__['updateGitignore'] = function (value) {
+  updateGitignore = value;
+};
+
+__$Resetters__['updateGitignore'] = function () {
+  updateGitignore = _updateGitignore;
+};
+
 module.exports = updateGitignore;
+
+if (typeof module.exports === 'object' || typeof module.exports === 'function') {
+  Object.defineProperty(module.exports, '__Rewire__', {
+    'value': _Rewire__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(module.exports, '__set__', {
+    'value': _Rewire__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(module.exports, '__ResetDependency__', {
+    'value': _ResetDependency__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(module.exports, '__GetDependency__', {
+    'value': _GetDependency__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(module.exports, '__get__', {
+    'value': _GetDependency__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(module.exports, '__RewireAPI__', {
+    'value': _RewireAPI__,
+    'enumerable': false,
+    'configurable': true
+  });
+}
 //# sourceMappingURL=gitignore.js.map

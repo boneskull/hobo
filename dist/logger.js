@@ -3,11 +3,106 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+var __$Getters__ = [];
+var __$Setters__ = [];
+var __$Resetters__ = [];
+
+function _GetDependency__(name) {
+  return __$Getters__[name]();
+}
+
+function _Rewire__(name, value) {
+  __$Setters__[name](value);
+}
+
+function _ResetDependency__(name) {
+  __$Resetters__[name]();
+}
+
+var _RewireAPI__ = {
+  '__GetDependency__': _GetDependency__,
+  '__get__': _GetDependency__,
+  '__Rewire__': _Rewire__,
+  '__set__': _Rewire__,
+  '__ResetDependency__': _ResetDependency__
+};
+'use strict';
+
 var stampit = require('stampit');
+var _stampit = stampit;
+
+__$Getters__['stampit'] = function () {
+  return stampit;
+};
+
+__$Setters__['stampit'] = function (value) {
+  stampit = value;
+};
+
+__$Resetters__['stampit'] = function () {
+  stampit = _stampit;
+};
+
 var EventEmittable = stampit.convertConstructor(require('events').EventEmitter);
+var _EventEmittable = EventEmittable;
+
+__$Getters__['EventEmittable'] = function () {
+  return EventEmittable;
+};
+
+__$Setters__['EventEmittable'] = function (value) {
+  EventEmittable = value;
+};
+
+__$Resetters__['EventEmittable'] = function () {
+  EventEmittable = _EventEmittable;
+};
+
 var _ = require('./utils');
+var _2 = _;
+
+__$Getters__['_'] = function () {
+  return _;
+};
+
+__$Setters__['_'] = function (value) {
+  _ = value;
+};
+
+__$Resetters__['_'] = function () {
+  _ = _2;
+};
+
 var chalk = require('chalk');
+var _chalk = chalk;
+
+__$Getters__['chalk'] = function () {
+  return chalk;
+};
+
+__$Setters__['chalk'] = function (value) {
+  chalk = value;
+};
+
+__$Resetters__['chalk'] = function () {
+  chalk = _chalk;
+};
+
 var meta = require('./meta');
+
+var _meta = meta;
+
+__$Getters__['meta'] = function () {
+  return meta;
+};
+
+__$Setters__['meta'] = function (value) {
+  meta = value;
+};
+
+__$Resetters__['meta'] = function () {
+  meta = _meta;
+};
 
 var log = undefined;
 
@@ -125,12 +220,67 @@ var Logger = stampit({
   }
 }).compose(EventEmittable);
 
-exports.Logger = Logger;
+var _Logger = Logger;
 
-exports['default'] = function (opts) {
+__$Getters__['Logger'] = function () {
+  return Logger;
+};
+
+__$Setters__['Logger'] = function (value) {
+  exports.Logger = Logger = value;
+};
+
+__$Resetters__['Logger'] = function () {
+  exports.Logger = Logger = _Logger;
+};
+
+exports.Logger = _Logger;
+
+var _defaultExport = function _defaultExport(opts) {
   if (_.isUndefined(opts)) {
     return log || Logger();
   }
   return Logger(opts);
 };
+
+if ((typeof _defaultExport === 'object' || typeof _defaultExport === 'function') && Object.isExtensible(_defaultExport)) {
+  Object.defineProperty(_defaultExport, '__Rewire__', {
+    'value': _Rewire__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(_defaultExport, '__set__', {
+    'value': _Rewire__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(_defaultExport, '__ResetDependency__', {
+    'value': _ResetDependency__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(_defaultExport, '__GetDependency__', {
+    'value': _GetDependency__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(_defaultExport, '__get__', {
+    'value': _GetDependency__,
+    'enumerable': false,
+    'configurable': true
+  });
+  Object.defineProperty(_defaultExport, '__RewireAPI__', {
+    'value': _RewireAPI__,
+    'enumerable': false,
+    'configurable': true
+  });
+}
+
+exports['default'] = _defaultExport;
+exports.__GetDependency__ = _GetDependency__;
+exports.__get__ = _GetDependency__;
+exports.__Rewire__ = _Rewire__;
+exports.__set__ = _Rewire__;
+exports.__ResetDependency__ = _ResetDependency__;
+exports.__RewireAPI__ = _RewireAPI__;
 //# sourceMappingURL=logger.js.map

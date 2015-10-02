@@ -6,13 +6,9 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _lodash = require('lodash');
+var _stampit = require('stampit');
 
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _util = require('util');
-
-var _util2 = _interopRequireDefault(_util);
+var _stampit2 = _interopRequireDefault(_stampit);
 
 var __$Getters__ = [];
 var __$Setters__ = [];
@@ -39,47 +35,48 @@ var _RewireAPI__ = {
 };
 'use strict';
 
-var _$IsLifeBindingActive = true;
-var _ = _lodash2['default'];
+var _stampit$IsLifeBindingActive = true;
+var stampit = _stampit2['default'];
 
-__$Getters__['_'] = function () {
-  return _$IsLifeBindingActive ? _lodash2['default'] : _;
+__$Getters__['stampit'] = function () {
+  return _stampit$IsLifeBindingActive ? _stampit2['default'] : stampit;
 };
 
-__$Setters__['_'] = function (value) {
-  _$IsLifeBindingActive = false;
-  _ = value;
+__$Setters__['stampit'] = function (value) {
+  _stampit$IsLifeBindingActive = false;
+  stampit = value;
 };
 
-__$Resetters__['_'] = function () {
-  _$IsLifeBindingActive = true;
-  _ = _lodash2['default'];
+__$Resetters__['stampit'] = function () {
+  _stampit$IsLifeBindingActive = true;
+  stampit = _stampit2['default'];
 };
 
-var _format$IsLifeBindingActive = true;
-var format = _util2['default'];
+var Stamp = stampit.init(function (_ref) {
+  var stamp = _ref.stamp;
 
-__$Getters__['format'] = function () {
-  return _format$IsLifeBindingActive ? _util2['default'] : format;
-};
-
-__$Setters__['format'] = function (value) {
-  _format$IsLifeBindingActive = false;
-  format = value;
-};
-
-__$Resetters__['format'] = function () {
-  _format$IsLifeBindingActive = true;
-  format = _util2['default'];
-};
-
-_GetDependency__('_').mixin({
-  format: _GetDependency__('format')
-}, {
-  chain: false
+  if (!stamp.fixed.methods.getStamp) {
+    stamp.fixed.methods.getStamp = function () {
+      return stamp;
+    };
+  }
 });
 
-var _defaultExport = _GetDependency__('_');
+var _Stamp = Stamp;
+
+__$Getters__['Stamp'] = function () {
+  return Stamp;
+};
+
+__$Setters__['Stamp'] = function (value) {
+  Stamp = value;
+};
+
+__$Resetters__['Stamp'] = function () {
+  Stamp = _Stamp;
+};
+
+var _defaultExport = Stamp;
 
 if ((typeof _defaultExport === 'object' || typeof _defaultExport === 'function') && Object.isExtensible(_defaultExport)) {
   Object.defineProperty(_defaultExport, '__Rewire__', {
@@ -122,4 +119,4 @@ exports.__set__ = _Rewire__;
 exports.__ResetDependency__ = _ResetDependency__;
 exports.__RewireAPI__ = _RewireAPI__;
 module.exports = exports['default'];
-//# sourceMappingURL=utils.js.map
+//# sourceMappingURL=stamp.js.map

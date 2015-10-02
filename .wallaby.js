@@ -1,15 +1,11 @@
 'use strict';
 
 var babel = require('babel');
-var fs = require('fs');
 
-module.exports = function wallabyConfig(wallaby) {
-  var fixture = fs.readFileSync(wallaby.localProjectDir +
-    'test/fixture.js',
-    'utf8');
-
+module.exports = function wallabyConfig() {
   return {
     files: [
+      'test/fixture.js',
       'src/**/*.js',
       'package.json'
     ],
@@ -21,7 +17,6 @@ module.exports = function wallabyConfig(wallaby) {
       runner: 'node'
     },
     preprocessors: {
-      'test/*.spec.js': file => fixture + file.content,
       '**/*.js': file => babel.transform(file.content, {
         sourceMap: true,
         plugins: ['babel-plugin-rewire']
@@ -29,6 +24,9 @@ module.exports = function wallabyConfig(wallaby) {
     },
     testFramework: 'mocha',
     debug: true,
-    recycle: true
+    bootstrap: function bootstrap(wallaby) {
+      var path = require('path');
+      require(path.join(wallaby.projectCacheDir, 'test', 'fixture'));
+    }
   };
 };

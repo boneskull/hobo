@@ -6,6 +6,7 @@ import Command from '../command';
 import {coloredPkgNameAndVersion, capitalizedPkgName} from '../../meta';
 import questions from './questions';
 
+/* eslint no-extra-bind:0 */
 const setup = function setup(done) {
   console.log(chalk.green(coloredPkgNameAndVersion) + '\n');
   console.log(`Let's get you going!`);

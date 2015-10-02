@@ -1,12 +1,11 @@
 'use strict';
 
 import path from 'path';
-import fs, {canWrite, isDirEmpty} from '../../fs';
+import fs, {isDirEmpty} from '../../fs';
 import logger from '../../logger';
 import chalk from 'chalk';
 import _parseGitConfig from 'parse-git-config';
 import _githubUsername from 'github-username';
-import {pkgNamePlural} from '../../meta';
 import Promise from 'bluebird';
 import _ from '../../utils';
 import Hobo, {hoboDirpath} from '../../hobo';
@@ -36,7 +35,8 @@ function questions() {
             name: 'gitHubToken',
             message: `Copy & paste it here:`,
             'default': () => {
-              console.log(`Thanks.  Next, we'll need a personal access token.\n` +
+              console.log(`Thanks.  Next, we'll need a personal access ` +
+                `token.\n` +
                 `Visit ${chalk.blue(tokenUrl)} and create a token with ` +
                 `${chalk.blue('repo_public')} access.`);
             },
@@ -50,8 +50,8 @@ function questions() {
 
           const bindleName = {
             'default': () => {
-              console.log("Now we will create a configuration for you.  This is " +
-                `called a ${chalk.blue('Bindle')}.`);
+              console.log("Now we will create a configuration for you.  This " +
+                `is called a ${chalk.blue('Bindle')}.`);
               return defaultBindleName;
             },
             message: 'What should it be named?',
@@ -105,8 +105,8 @@ function questions() {
                   if (email) {
                     return githubUsername(email)
                       .catch(() => {
-                        log.debug("Couldn't determine the GitHub username from email " +
-                          `"${email}"`);
+                        log.debug(`Couldn't determine the GitHub username ` +
+                          `from email "${email}"`);
                       })
                       .then(username => `${username}/${repoName}.${bindleExt}`);
                   }
